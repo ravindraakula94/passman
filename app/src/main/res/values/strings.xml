@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RA_Vault</string>
-    <string name="authenticate_title">RA_Vault Authentication</string>
+    <string name="app_name">PassMan</string>
+    <string name="authenticate_title">PassMan Authentication</string>
     <string name="authenticate_subtitle">Please authenticate to access your passwords</string>
     <string name="authenticate_button">Authenticate</string>
     <string name="authentication_failed">Authentication failed. Please try again.</string>
@@ -10,7 +10,7 @@
     <string name="biometric_prompt_subtitle">Use your biometric credential to authenticate</string>
     <string name="biometric_prompt_cancel">Cancel</string>
     <string name="hello_message">Hello Ravindra Akula</string>
-    <string name="welcome_message">Welcome to RA_Vault</string>
+    <string name="welcome_message">Welcome to PassMan</string>
     <string name="logout">Logout</string>
     
     <!-- Password Management -->

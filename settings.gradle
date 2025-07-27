@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RA_Vault"
+rootProject.name = "PassMan"
 include ':app'

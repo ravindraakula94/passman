@@ -1,4 +1,4 @@
-# RA_Vault - Android Password Manager
+# PassMan - Android Password Manager
 
 A secure, offline Android password manager application that stores encrypted passwords locally without internet connectivity.
 
@@ -13,7 +13,7 @@ This is the **Stage 1 - Basic Implementation** with minimal functionality:
 
 ### Project Structure
 ```
-RA_Vault/
+PassMan/
 ├── app/
 │   ├── src/main/
 │   │   ├── java/com/ravault/passwordmanager/
@@ -47,7 +47,7 @@ RA_Vault/
 1. **Open in Android Studio**:
    - Launch Android Studio
    - Choose "Open an existing Android Studio project"
-   - Navigate to the `RA_Vault` folder and select it
+   - Navigate to the `PassMan` folder and select it
 
 2. **Configure SDK Path**:
    - Open `local.properties` file
@@ -114,7 +114,7 @@ RA_Vault/
 
 ## Next Steps
 
-This basic version provides the foundation for the full RA_Vault password manager. Future enhancements will include:
+This basic version provides the foundation for the full PassMan password manager. Future enhancements will include:
 
 1. **Password Storage**: SQLite database with encryption
 2. **Password Management**: Add, edit, delete, and view passwords

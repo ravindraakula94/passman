@@ -27,7 +27,7 @@ abstract class PasswordDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     PasswordDatabase::class.java,
-                    "ra_vault_database"
+                    "PassMan_database"
                 )
                 .fallbackToDestructiveMigration()
                 .build()

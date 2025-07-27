@@ -1,7 +1,7 @@
-# RA_Vault - Password Manager App - Design Document
+# PassMan - Password Manager App - Design Document
 
 ## Overview
-RA_Vault is a secure, offline Android password manager application that stores encrypted passwords locally without internet connectivity. The app focuses on simplicity, speed, and security.
+PassMan is a secure, offline Android password manager application that stores encrypted passwords locally without internet connectivity. The app focuses on simplicity, speed, and security.
 
 ## Architecture
 
@@ -258,7 +258,7 @@ class SecureString {
 
 ## File Structure
 ```
-RA_Vault/
+PassMan/
 ├── app/
 │   ├── src/main/java/com/ravault/passwordmanager/
 │   │   ├── activities/

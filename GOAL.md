@@ -1,6 +1,6 @@
-# RA_Vault - Password Manager App
+# PassMan - Password Manager App
 
-I want to create a password manager app called RA_Vault. It would be an android app that doesn't connect to the internet.
+I want to create a password manager app called PassMan. It would be an android app that doesn't connect to the internet.
 
 ## Stage 1
 

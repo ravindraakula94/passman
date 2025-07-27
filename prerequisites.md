@@ -1,6 +1,6 @@
-# RA_Vault - Prerequisites and Setup Guide
+# PassMan - Prerequisites and Setup Guide
 
-This document outlines everything you need to successfully build, develop, and test the RA_Vault password manager app on your Android device.
+This document outlines everything you need to successfully build, develop, and test the PassMan password manager app on your Android device.
 
 ## Development Environment Setup
 
@@ -56,7 +56,7 @@ Google Repository
 
 **Project Configuration:**
 ```
-Project Name: RA_Vault
+Project Name: PassMan
 Package Name: com.ravault.passwordmanager
 Language: Kotlin
 Minimum SDK: API 24 (Android 7.0)
