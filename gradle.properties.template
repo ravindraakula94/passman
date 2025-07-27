@@ -1,0 +1,8 @@
+android.useAndroidX=true
+
+# Release signing configuration
+# IMPORTANT: Copy this file and fill these values with your actual keystore information
+# Do NOT commit the actual passwords to version control!
+# KEYSTORE_PASSWORD=your_actual_keystore_password
+# KEY_ALIAS=your_key_alias_name
+# KEY_PASSWORD=your_actual_key_password
