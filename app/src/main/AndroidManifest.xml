@@ -21,6 +21,16 @@
             android:exported="false" />
         
         <activity
+            android:name=".AddEditPasswordActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        
+        <activity
+            android:name=".PasswordDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        
+        <activity
             android:name=".AuthenticationActivity"
             android:exported="true">
             <intent-filter>
