@@ -19,9 +19,30 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+        
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            
+            // Enable signing for release builds
+            signingConfig signingConfigs.release
+        }
+    }
+    
+    signingConfigs {
+        release {
+            storeFile file("../passman-release-key.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: project.findProperty("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS") ?: project.findProperty("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD") ?: project.findProperty("KEY_PASSWORD")
         }
     }
     
