@@ -10,6 +10,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
     
     <item
+        android:id="@+id/action_generate_password"
+        android:title="@string/generate_password"
+        app:showAsAction="never" />
+    
+    <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
         app:showAsAction="never" />

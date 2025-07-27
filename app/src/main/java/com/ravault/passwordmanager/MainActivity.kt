@@ -109,6 +109,11 @@ class MainActivity : AppCompatActivity() {
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_generate_password -> {
+                val intent = Intent(this, PasswordGeneratorActivity::class.java)
+                startActivity(intent)
+                true
+            }
             R.id.action_logout -> {
                 // Return to authentication screen
                 val intent = Intent(this, AuthenticationActivity::class.java)

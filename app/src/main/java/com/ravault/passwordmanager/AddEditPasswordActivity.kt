@@ -1,7 +1,9 @@
 package com.ravault.passwordmanager
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +25,19 @@ class AddEditPasswordActivity : AppCompatActivity() {
     private lateinit var etPassword: TextInputEditText
     private lateinit var etWebsite: TextInputEditText
     private lateinit var etNotes: TextInputEditText
+    private lateinit var btnGeneratePassword: MaterialButton
     private lateinit var btnSave: MaterialButton
+    
+    private val passwordGeneratorLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val generatedPassword = result.data?.getStringExtra("GENERATED_PASSWORD")
+            generatedPassword?.let {
+                etPassword.setText(it)
+            }
+        }
+    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +49,7 @@ class AddEditPasswordActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.et_password)
         etWebsite = findViewById(R.id.et_website)
         etNotes = findViewById(R.id.et_notes)
+        btnGeneratePassword = findViewById(R.id.btn_generate_password)
         btnSave = findViewById(R.id.btn_save)
         
         // Check if editing existing password
@@ -56,6 +71,12 @@ class AddEditPasswordActivity : AppCompatActivity() {
         // Set up save button
         btnSave.setOnClickListener {
             savePassword()
+        }
+        
+        // Set up generate password button
+        btnGeneratePassword.setOnClickListener {
+            val intent = Intent(this, PasswordGeneratorActivity::class.java)
+            passwordGeneratorLauncher.launch(intent)
         }
     }
     

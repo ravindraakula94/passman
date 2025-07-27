@@ -82,14 +82,10 @@ class EncryptionManager(private val context: Context) {
         val iv = cipher.iv
         val ciphertext = cipher.doFinal(plaintext.toByteArray(Charsets.UTF_8))
         
-        android.util.Log.d("EncryptionManager", "Encrypting data. IV length: ${iv.size}, Ciphertext length: ${ciphertext.size}")
-        
         // Combine IV and ciphertext for storage
         val combined = ByteArray(iv.size + ciphertext.size)
         System.arraycopy(iv, 0, combined, 0, iv.size)
         System.arraycopy(ciphertext, 0, combined, iv.size, ciphertext.size)
-        
-        android.util.Log.d("EncryptionManager", "Combined data length: ${combined.size}")
         
         return EncryptedData(combined, iv, salt)
     }
@@ -100,7 +96,6 @@ class EncryptionManager(private val context: Context) {
         
         // Extract IV and ciphertext from combined data
         val combined = encryptedData.ciphertext
-        android.util.Log.d("EncryptionManager", "Decrypting data. Combined length: ${combined.size}")
         
         if (combined.size < IV_LENGTH) {
             throw IllegalArgumentException("Invalid encrypted data - too short")
@@ -112,16 +107,12 @@ class EncryptionManager(private val context: Context) {
         System.arraycopy(combined, 0, iv, 0, IV_LENGTH)
         System.arraycopy(combined, IV_LENGTH, ciphertext, 0, ciphertext.size)
         
-        android.util.Log.d("EncryptionManager", "IV length: ${iv.size}, Ciphertext length: ${ciphertext.size}")
-        
         val cipher = Cipher.getInstance(AES_MODE)
         val gcmSpec = GCMParameterSpec(TAG_LENGTH, iv)
         cipher.init(Cipher.DECRYPT_MODE, derivedKey, gcmSpec)
         
         val plaintext = cipher.doFinal(ciphertext)
-        val result = String(plaintext, Charsets.UTF_8)
-        android.util.Log.d("EncryptionManager", "Decryption successful")
-        return result
+        return String(plaintext, Charsets.UTF_8)
     }
     
     fun clearSensitiveData(data: ByteArray) {
