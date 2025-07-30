@@ -18,6 +18,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../passman-release-key.keystore")
+            storePassword project.findProperty("KEYSTORE_PASSWORD") ?: System.getenv("KEYSTORE_PASSWORD")
+            keyAlias project.findProperty("KEY_ALIAS") ?: System.getenv("KEY_ALIAS")
+            keyPassword project.findProperty("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD")
+        }
+    }
+
     buildTypes {
         debug {
             debuggable true
@@ -34,15 +43,6 @@ android {
             
             // Enable signing for release builds
             signingConfig signingConfigs.release
-        }
-    }
-    
-    signingConfigs {
-        release {
-            storeFile file("../passman-release-key.keystore")
-            storePassword System.getenv("KEYSTORE_PASSWORD") ?: project.findProperty("KEYSTORE_PASSWORD")
-            keyAlias System.getenv("KEY_ALIAS") ?: project.findProperty("KEY_ALIAS")
-            keyPassword System.getenv("KEY_PASSWORD") ?: project.findProperty("KEY_PASSWORD")
         }
     }
     
