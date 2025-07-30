@@ -5,50 +5,50 @@ plugins {
 }
 
 android {
-    namespace 'com.ravault.passwordmanager'
-    compileSdk 34
+    namespace = 'com.ravault.passwordmanager'
+    compileSdk = 34
 
     defaultConfig {
-        applicationId "com.ravault.passwordmanager"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.ravault.passwordmanager"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
-            storeFile file("../passman-release-key.keystore")
-            storePassword project.findProperty("KEYSTORE_PASSWORD") ?: System.getenv("KEYSTORE_PASSWORD")
-            keyAlias project.findProperty("KEY_ALIAS") ?: System.getenv("KEY_ALIAS")
-            keyPassword project.findProperty("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD")
+            storeFile = file("../passman-release-key.keystore")
+            storePassword = project.findProperty("KEYSTORE_PASSWORD") ?: System.getenv("KEYSTORE_PASSWORD")
+            keyAlias = project.findProperty("KEY_ALIAS") ?: System.getenv("KEY_ALIAS")
+            keyPassword = project.findProperty("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD")
         }
     }
 
     buildTypes {
         debug {
-            debuggable true
-            minifyEnabled false
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
+            debuggable = true
+            minifyEnabled = false
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
         
         release {
-            debuggable false
-            minifyEnabled true
-            shrinkResources true
+            debuggable = false
+            minifyEnabled = true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             
             // Enable signing for release builds
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.release
         }
     }
     
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     
     kotlinOptions {
@@ -56,7 +56,7 @@ android {
     }
     
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 
