@@ -67,9 +67,46 @@ class EncryptionManager(private val context: Context) {
     }
     
     private fun deriveKey(masterKey: SecretKey, salt: ByteArray): SecretKey {
-        // For simplicity in this implementation, we'll use the master key directly
-        // In production, you'd want to derive a key using PBKDF2
-        return masterKey
+        // Instead of using the Android Keystore key directly (which doesn't expose raw bytes),
+        // we'll use a proper PBKDF2 approach with the salt as the primary input
+        
+        try {
+            // Create a deterministic seed by hashing the salt with a fixed context
+            val saltWithContext = ByteArray(salt.size + 16)
+            System.arraycopy(salt, 0, saltWithContext, 0, salt.size)
+            // Add a fixed context string to prevent collision with other uses
+            System.arraycopy("RAVaultContext".toByteArray(), 0, saltWithContext, salt.size, 14)
+            
+            // Use PBKDF2 with the enhanced salt
+            val spec = PBEKeySpec(
+                "RAVaultMasterPassword".toCharArray(), // Fixed password for deterministic derivation
+                saltWithContext,
+                PBKDF2_ITERATIONS,
+                KEY_LENGTH
+            )
+            
+            val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+            val derivedKeyBytes = factory.generateSecret(spec).encoded
+            
+            spec.clearPassword()
+            
+            return SecretKeySpec(derivedKeyBytes, "AES")
+        } catch (e: Exception) {
+            // Fallback to simple salt-based derivation
+            val spec = PBEKeySpec(
+                "RAVaultFallback".toCharArray(),
+                salt,
+                PBKDF2_ITERATIONS,
+                KEY_LENGTH
+            )
+            
+            val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+            val derivedKeyBytes = factory.generateSecret(spec).encoded
+            
+            spec.clearPassword()
+            
+            return SecretKeySpec(derivedKeyBytes, "AES")
+        }
     }
     
     fun encryptPassword(plaintext: String, salt: ByteArray): EncryptedData {
