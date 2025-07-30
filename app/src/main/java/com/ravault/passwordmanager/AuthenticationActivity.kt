@@ -2,7 +2,6 @@ package com.ravault.passwordmanager
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -24,7 +23,6 @@ class AuthenticationActivity : AppCompatActivity() {
         executor = ContextCompat.getMainExecutor(this)
         
         val btnAuthenticate = findViewById<MaterialButton>(R.id.btn_authenticate)
-        val tvStatus = findViewById<TextView>(R.id.tv_status)
         
         setupBiometricAuthentication()
         
